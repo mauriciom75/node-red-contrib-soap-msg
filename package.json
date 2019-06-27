@@ -1,6 +1,6 @@
 {
     "name" : "node-red-contrib-soap-msg",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "In progress.",
     "repository": {
         "type": "git",
