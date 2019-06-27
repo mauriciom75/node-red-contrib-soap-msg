@@ -19,7 +19,7 @@ module.exports = function (RED) {
                 if(lastFiveChar !== '?wsdl'){
                     server.wsdl += '?wsdl';
                 };
-                if ( msg.options.request )
+                if ( msg.options && msg.options.request )
                 {
                   request_with_defaults = request.defaults(msg.options.request);
                   msg.options.request = request_with_defaults;
