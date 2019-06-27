@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('soap request', {
+    RED.nodes.registerType('soap-request-msg', {
         category: "function",
         icon: "white-globe.png",
         color: "#a6bbcf",
@@ -8,7 +8,7 @@
         defaults: {
             name: { value: "" },
             topic: { value: "" },
-            wsdl: {value: "", type: "soap-config"},
+            wsdl: {value: "", type: "soap-config-msg"},
             method: {value: "", required: true}
         },
         label: function () {
@@ -17,7 +17,7 @@
     });
 </script>
 
-<script type="text/x-red" data-template-name="soap request">
+<script type="text/x-red" data-template-name="soap-request-msg">
     <div class="form-row">
         <label for="node-input-wsdl"><i class="fa fa-globe"></i> WSDL</label>
         <input type="text" id="node-input-wsdl" placeholder="WSDL">
@@ -36,7 +36,7 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="soap request">
+<script type="text/x-red" data-help-name="soap-request-msg">
     <p>Node-red nodes that allow users to send SOAP request.</p>
     <p>To set up SOAP request, create a new soap config </p>
 

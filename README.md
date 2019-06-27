@@ -1,6 +1,9 @@
 # node-red-contrib-soap-msg
 Node-red nodes that allow users to send SOAP request.
-based on node-red-contrib-soap but returning tha same msg modified with the response.
+based on node-red-contrib-soap but:
+* return the same msg modified with the response.
+* if an error occurs throw an error. If is a business error this returned in msg.payload.
+
 
 ##Usages
 To set up SOAP request, create a new soap config:
@@ -19,7 +22,7 @@ You can also feed in parameters and overwrite configs with an injected msg:
 For example, here is the sample flow where we try to send a SOAP request to http://www.webservicex.net/geoipservice.asmx, trying to call the `GetGeoIP` function with an variable IPAddress as 139.130.4.5.
 
 ```
-[{"id":"e480824b.767f","type":"soap request","z":"beb01f75.a7c1d","name":"","topic":"","wsdl":"1d0b9627.18e18a","method":"GetGeoIP","x":395,"y":169,"wires":[["5bd47eca.8fd67"]]},{"id":"a2176fcf.cb88","type":"inject","z":"beb01f75.a7c1d","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":114,"y":261,"wires":[["5e12abf.dccd454"]]},{"id":"5bd47eca.8fd67","type":"debug","z":"beb01f75.a7c1d","name":"","active":true,"console":"false","complete":"false","x":541,"y":265,"wires":[]},{"id":"5e12abf.dccd454","type":"function","z":"beb01f75.a7c1d","name":"","func":"var newmsg={\n  server:\"http://www.webservicex.net/geoipservice.asmx\",\n  options:{},\n  headers:{},\n  payload:{\n      IPAddress:\"139.130.4.5\"\n  }\n  \n};\nreturn newmsg;","outputs":1,"noerr":0,"x":246,"y":194,"wires":[["e480824b.767f"]]},{"id":"1d0b9627.18e18a","type":"soap-config","z":"beb01f75.a7c1d","wsdl":"http://www.webservicex.net/geoipservice.asmx?wsdl","auth":"0","user":"","pass":"","key":"","cert":"","token":""}]
+[{"id":"e480824b.767f","type":"soap-request-msg","z":"beb01f75.a7c1d","name":"","topic":"","wsdl":"1d0b9627.18e18a","method":"GetGeoIP","x":395,"y":169,"wires":[["5bd47eca.8fd67"]]},{"id":"a2176fcf.cb88","type":"inject","z":"beb01f75.a7c1d","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":114,"y":261,"wires":[["5e12abf.dccd454"]]},{"id":"5bd47eca.8fd67","type":"debug","z":"beb01f75.a7c1d","name":"","active":true,"console":"false","complete":"false","x":541,"y":265,"wires":[]},{"id":"5e12abf.dccd454","type":"function","z":"beb01f75.a7c1d","name":"","func":"var newmsg={\n  server:\"http://www.webservicex.net/geoipservice.asmx\",\n  options:{},\n  headers:{},\n  payload:{\n      IPAddress:\"139.130.4.5\"\n  }\n  \n};\nreturn newmsg;","outputs":1,"noerr":0,"x":246,"y":194,"wires":[["e480824b.767f"]]},{"id":"1d0b9627.18e18a","type":"soap-config-msg","z":"beb01f75.a7c1d","wsdl":"http://www.webservicex.net/geoipservice.asmx?wsdl","auth":"0","user":"","pass":"","key":"","cert":"","token":""}]
 ```
 
 The returned `msg.payload` would be:

@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('soap-config', {
+    RED.nodes.registerType('soap-config-masg', {
         category: 'config',
         defaults: {
             wsdl: {value: "", required: true},
@@ -16,7 +16,7 @@
     });
 </script>
 
-<script type="text/x-red" data-template-name="soap-config">
+<script type="text/x-red" data-template-name="soap-config-msg">
     <div class="form-row">
         <label for="node-config-input-wsdl"><i class="fa fa-globe"></i> WSDL</label>
         <input type="text" id="node-config-input-wsdl">
@@ -53,7 +53,7 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="soap-config">
+<script type="text/x-red" data-help-name="soap-config-msg">
     <p>Create SOAP config</p>
     <p>To set up SOAP request, create a new soap config:</p> 
     <p>

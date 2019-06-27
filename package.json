@@ -11,8 +11,8 @@
     ],
     "node-red" : {
         "nodes": {
-            "soap": "soap-node.js",
-            "soap-config": "soap-config.js"
+            "soap-request-msg": "soap-request-msg.js",
+            "soap-config-msg": "soap-config-msg.js"
         }
     },
     "author": {

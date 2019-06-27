@@ -1,5 +1,5 @@
 module.exports = function (RED) {
-    function SoapCall(n) {
+    function SoapCallMsg(n) {
         var soap = require('soap');
         var request = require('request');
         RED.nodes.createNode(this, n);
@@ -50,6 +50,7 @@ module.exports = function (RED) {
                     if(msg.headers){
                         client.addSoapHeader(msg.headers);
                     }
+                    /*
                     client.on('33soapError', function (error) {
                         // no es un error de formato. El body se parseó ok.
                         // Solo indica que hubo error soap que puede ser de negocio.
@@ -60,6 +61,7 @@ module.exports = function (RED) {
                         msg.soap_response = JSON.parse(JSON.stringify(error.response));
                         node.error("Service Call Error: " + err, msg);
                     });
+                    */
 
                     if(client.hasOwnProperty(node.method)){
                         client[node.method](msg.payload, function (err, result) {
@@ -89,5 +91,5 @@ module.exports = function (RED) {
             node.error(err.message);
         }
     }
-    RED.nodes.registerType("soap request", SoapCall);
+    RED.nodes.registerType("soap-request-msg", SoapCallMsg);
 };
