@@ -27,7 +27,7 @@ module.exports = function (RED) {
                 soap.createClient(server.wsdl, msg.options||{}, function (err, client) {
                     if (err) {
                         node.status({fill: "red", shape: "dot", text: "WSDL Config Error: " + err});
-                        node.error("WSDL Config Error: " + err);
+                        node.error("WSDL Config Error: " + err, msg);
                         return;
                     }
 
@@ -82,13 +82,13 @@ module.exports = function (RED) {
                         });
                     } else {
                         node.status({fill:"red", shape:"dot", text:"Method does not exist"});
-                        node.error("Method does not exist!");
+                        node.error("Method does not exist!", msg);
                     };
                 });
             });
         } catch (err) {
             node.status({fill: "red", shape: "dot", text: err.message});
-            node.error(err.message);
+            node.error(err.message, msg);
         }
     }
     RED.nodes.registerType("soap-request-msg", SoapCallMsg);
